@@ -350,6 +350,12 @@ namespace UnityEngine.Rendering.Universal
         /// <inheritdoc />
         protected override void Dispose(bool disposing)
         {
+            if (m_MainLightShadowCasterPass != null)
+            {
+                m_MainLightShadowCasterPass.CleanUp();
+                m_MainLightShadowCasterPass = null;
+            }
+
             m_ForwardLights.Cleanup();
             m_GBufferPass?.Dispose();
             m_PostProcessPasses.Dispose();
